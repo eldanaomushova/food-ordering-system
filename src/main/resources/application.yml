@@ -1,0 +1,70 @@
+spring:
+  application:
+    name: food-ordering
+    security:
+      jwt:
+        secret-key: ${JWT_SECRET_KEY}
+        expiration: 86400000
+        refresh-token:
+          expiration: 604800000
+      oauth2:
+        client:
+          registration:
+            google:
+              client-id: ${GOOGLE_CLIENT_ID}
+              client-secret: ${GOOGLE_CLIENT_SECRET}
+            git-hub:
+              client-id: ${GITHUB_CLIENT_ID}
+              client-secret: ${GITHUB_CLIENT_SECRET}
+            facebook:
+              client-id: ${FACEBOOK_CLIENT_ID}
+              client-secret: ${FACEBOOK_CLIENT_SECRET}
+              scope:
+                - email
+                - public_profile
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: 654321
+    schema: public
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+  thymeleaf:
+    check-template-location: false
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: eldana956@gmail.com
+    password: himt yqhk asjf xmis
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+  doc:
+    api-docs:
+      path: /api-docs
+    swagger-ui:
+      path: /swagger-ui.html
+
+  security:
+    logging:
+      level:
+        org.springframework:
+          security: TRACE
+
+  error:
+    include-stacktrace: never
+
+  caching:
+    spring:
+      userListTTL: 60000
